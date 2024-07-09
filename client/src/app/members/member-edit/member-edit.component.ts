@@ -5,15 +5,18 @@ import { Member } from '../../_models/member';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { PhotoEditComponent } from "../photo-edit/photo-edit.component";
+import { every } from 'rxjs';
 
 @Component({
   selector: 'app-member-edit',
   standalone: true,
-  imports: [TabsModule, FormsModule, ToastrModule],
   templateUrl: './member-edit.component.html',
-  styleUrl: './member-edit.component.css'
+  styleUrl: './member-edit.component.css',
+  imports: [TabsModule, FormsModule, ToastrModule, PhotoEditComponent]
 })
 export class MemberEditComponent implements OnInit {
+
   @ViewChild('editForm') editForm?: NgForm;
   @HostListener('window:beforeunload', ['$event']) notify($event: any) {
     if (this.editForm?.dirty) {
@@ -47,5 +50,9 @@ export class MemberEditComponent implements OnInit {
       }
     })
 
+  }
+
+  onMemberChange(event: Member) {
+    this.member = event;
   }
 }

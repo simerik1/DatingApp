@@ -17,7 +17,9 @@
         </ul>
       }
       @if (accountService.currentUser()) {
-        <div id="button-animated" class="dropdown" dropdown>
+        <div class="dropdown" dropdown>
+          <img class="me-2"
+           src="{{accountService.currentUser()?.photoUrl || './assets/user.png'}}" alt="user main photo">
           <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle >
             Welcome {{accountService.currentUser()?.username | titlecase}}</a>
           <div id="dropdown-animated" *dropdownMenu class="dropdown-menu" aria-labelledby="button-animated">
